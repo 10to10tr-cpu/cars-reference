@@ -30,22 +30,15 @@
   body{
     margin:0; color:var(--text);
     font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
-    background:
-      radial-gradient(1200px 600px at 50% -10%, var(--bg-glow), transparent 70%),
-      var(--bg);
+    background:radial-gradient(1200px 600px at 50% -10%, var(--bg-glow), transparent 70%), var(--bg);
     min-height:100dvh;
   }
-  header{
-    display:flex; align-items:center; gap:14px;
-    padding:22px clamp(16px,4vw,40px) 8px; max-width:1100px; margin:0 auto;
-  }
+  header{ display:flex; align-items:center; gap:14px; padding:22px clamp(16px,4vw,40px) 8px; max-width:1100px; margin:0 auto; }
   .logo{ font-size:1.5rem; }
   h1{ font-size:clamp(1.4rem,1rem+2vw,2rem); margin:0; letter-spacing:-.02em; font-weight:750; }
   header .sub{ color:var(--muted); font-size:.85rem; margin-left:2px; }
-  .theme-btn{
-    margin-left:auto; background:var(--card); color:var(--text); border:1px solid var(--line);
-    width:44px; height:44px; border-radius:13px; font-size:18px; cursor:pointer; display:grid; place-items:center;
-  }
+  .theme-btn{ margin-left:auto; background:var(--card); color:var(--text); border:1px solid var(--line);
+    width:44px; height:44px; border-radius:13px; font-size:18px; cursor:pointer; display:grid; place-items:center; }
   .theme-btn:hover{ border-color:var(--accent); }
   main{ max-width:1100px; margin:0 auto; padding:12px clamp(16px,4vw,40px) 60px; }
   .lead{ color:var(--muted); font-size:.95rem; margin:0 2px 22px; }
@@ -53,49 +46,32 @@
   .grid{ display:grid; gap:22px; grid-template-columns:1fr; }
   @media (min-width:720px){ .grid{ grid-template-columns:1fr 1fr; } }
 
-  .car-card{
-    position:relative; background:linear-gradient(180deg,var(--card),var(--card2));
-    border:1px solid var(--line); border-radius:var(--r); overflow:hidden;
-    box-shadow:var(--shadow); text-decoration:none; color:inherit;
-    display:flex; flex-direction:column; transition:transform .25s cubic-bezier(.16,1,.3,1),border-color .25s;
-  }
+  .car-card{ position:relative; background:linear-gradient(180deg,var(--card),var(--card2));
+    border:1px solid var(--line); border-radius:var(--r); overflow:hidden; box-shadow:var(--shadow);
+    text-decoration:none; color:inherit; display:flex; flex-direction:column;
+    transition:transform .25s cubic-bezier(.16,1,.3,1),border-color .25s; }
   .car-card:hover{ transform:translateY(-5px); border-color:color-mix(in oklab,var(--accent) 50%,var(--line)); }
-  .stage{
-    position:relative; padding:26px 22px 0; aspect-ratio:16/8;
-    display:grid; place-items:center;
-    background:radial-gradient(120% 90% at 50% 30%, color-mix(in oklab,var(--accent) 7%, transparent), transparent 70%);
-  }
-  .stage svg{ width:100%; height:auto; max-height:190px; filter:drop-shadow(0 22px 16px rgba(0,0,0,.45)); }
-  .floor{
-    position:absolute; left:8%; right:8%; bottom:14px; height:26px; border-radius:50%;
-    background:radial-gradient(closest-side, color-mix(in oklab,var(--floor) 90%, #000) , transparent);
-    opacity:.7;
-  }
-  .car-body{ padding:18px 22px 22px; }
+  .stage{ position:relative; padding:22px 20px 6px; display:grid; place-items:center;
+    background:radial-gradient(120% 90% at 50% 32%, color-mix(in oklab,var(--accent) 7%, transparent), transparent 70%); }
+  .stage svg{ width:100%; height:auto; max-height:200px; filter:drop-shadow(0 20px 14px rgba(0,0,0,.45)); }
+  .car-body{ padding:16px 22px 22px; }
   .car-name{ font-size:1.3rem; font-weight:700; letter-spacing:-.01em; display:flex; align-items:center; gap:10px; }
   .car-sub{ color:var(--muted); font-size:.85rem; margin-top:2px; }
-  .vin{
-    display:inline-flex; align-items:center; gap:8px; margin-top:12px; font-family:ui-monospace,Menlo,monospace;
+  .vin{ display:inline-flex; align-items:center; gap:8px; margin-top:12px; font-family:ui-monospace,Menlo,monospace;
     font-size:.8rem; color:var(--accent); background:color-mix(in oklab,var(--accent) 10%, transparent);
     border:1px solid color-mix(in oklab,var(--accent) 25%, transparent); padding:7px 11px; border-radius:10px;
-    cursor:pointer; user-select:none;
-  }
+    cursor:pointer; user-select:none; }
   .stats{ display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
   .stat{ background:var(--card2); border:1px solid var(--line); border-radius:12px; padding:8px 12px; min-width:74px; }
   .stat b{ display:block; font-size:1.15rem; font-variant-numeric:tabular-nums; }
   .stat span{ color:var(--muted); font-size:.72rem; text-transform:uppercase; letter-spacing:.04em; }
-  .open{
-    margin-top:18px; display:inline-flex; align-items:center; gap:8px;
-    background:var(--accent); color:var(--on-accent); font-weight:650; font-size:.95rem;
-    padding:13px 18px; border-radius:13px; align-self:flex-start;
-  }
+  .open{ margin-top:18px; display:inline-flex; align-items:center; gap:8px; background:var(--accent); color:var(--on-accent);
+    font-weight:650; font-size:.95rem; padding:13px 18px; border-radius:13px; align-self:flex-start; }
   .badge-color{ width:13px; height:13px; border-radius:50%; border:2px solid rgba(255,255,255,.5); flex:none; }
 
-  .add-card{
-    border:1.5px dashed var(--line); border-radius:var(--r); background:transparent;
+  .add-card{ border:1.5px dashed var(--line); border-radius:var(--r); background:transparent;
     display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;
-    padding:34px 26px; color:var(--muted); min-height:230px;
-  }
+    padding:34px 26px; color:var(--muted); min-height:230px; }
   .add-card .plus{ width:54px; height:54px; border-radius:50%; border:1.5px dashed var(--line); display:grid; place-items:center; font-size:26px; margin-bottom:14px; }
   .add-card b{ color:var(--text); font-weight:650; }
   .add-card p{ font-size:.82rem; margin:8px 0 0; max-width:34ch; }
@@ -121,99 +97,61 @@
 <div id="toast" style="position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);background:#111;color:#fff;padding:11px 18px;border-radius:12px;font-size:14px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:60;box-shadow:0 8px 30px rgba(0,0,0,.4);"></div>
 
 <script>
-// ── SVG-иллюстрации машин (боковой профиль) ──────────────────
-function velosterSVG(){ return `<svg viewBox="0 0 420 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Hyundai Veloster, жёлтый">
+// ── SVG-иллюстрации (боковой профиль, перерисованы по фото) ──
+function velosterSVG(){ return `<svg viewBox="0 0 480 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Hyundai Veloster, жёлтый">
   <defs>
-    <linearGradient id="velBody" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#ffe14d"/><stop offset=".5" stop-color="#f7c400"/><stop offset="1" stop-color="#d99e00"/>
-    </linearGradient>
-    <linearGradient id="velGlass" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#3a4a5c"/><stop offset="1" stop-color="#1a2430"/>
-    </linearGradient>
-    <radialGradient id="velRim" cx=".5" cy=".5" r=".5">
-      <stop offset="0" stop-color="#c9d2dd"/><stop offset=".6" stop-color="#8a95a3"/><stop offset="1" stop-color="#3a4250"/>
-    </radialGradient>
+    <linearGradient id="vB" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe24a"/><stop offset=".5" stop-color="#f7c200"/><stop offset="1" stop-color="#d99a00"/></linearGradient>
+    <linearGradient id="vG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#37485c"/><stop offset="1" stop-color="#141d27"/></linearGradient>
+    <radialGradient id="vR" cx=".4" cy=".38" r=".64"><stop offset="0" stop-color="#eef2f7"/><stop offset=".55" stop-color="#98a2b0"/><stop offset="1" stop-color="#2c333d"/></radialGradient>
   </defs>
-  <!-- кузов: приземистое купе с фастбэк-крышей -->
-  <path d="M18,132
-    C22,110 40,104 64,102
-    C80,86 104,74 140,71
-    C176,68 210,70 238,74
-    C300,82 340,96 372,110
-    C392,118 402,124 404,132
-    C405,140 400,146 388,147
-    L36,147 C22,147 16,142 18,132 Z" fill="url(#velBody)" stroke="#b98600" stroke-width="1.5"/>
-  <!-- нижний борт тень -->
-  <path d="M20,133 L402,133 C402,140 398,146 388,147 L36,147 C24,147 18,141 20,133 Z" fill="#00000022"/>
-  <!-- остекление купе -->
-  <path d="M96,84 C112,74 134,71 154,71 C168,71 176,72 182,74 L176,97 L104,97 C96,97 92,90 96,84 Z" fill="url(#velGlass)"/>
-  <path d="M190,74 C214,76 226,80 236,86 L232,97 L190,97 Z" fill="url(#velGlass)"/>
-  <!-- блик на крыше -->
-  <path d="M104,80 C120,74 140,72 158,73" fill="none" stroke="#fff6c9" stroke-width="2.5" stroke-linecap="round" opacity=".7"/>
-  <!-- подштамповка на двери -->
-  <path d="M70,120 C150,110 260,110 360,122" fill="none" stroke="#00000022" stroke-width="2"/>
-  <!-- фара / фонарь -->
-  <path d="M392,116 C400,118 404,123 404,130 L392,129 Z" fill="#fff4d0"/>
-  <path d="M20,124 L34,126 L33,133 L20,132 Z" fill="#e04b3a"/>
-  <!-- арки -->
-  <path d="M70,147 a34,34 0 0 1 68,0 Z" fill="#0c0e13"/>
-  <path d="M288,147 a34,34 0 0 1 68,0 Z" fill="#0c0e13"/>
-  <!-- колёса -->
-  <g><circle cx="104" cy="140" r="30" fill="#15181f"/><circle cx="104" cy="140" r="17" fill="url(#velRim)"/>
-    <g stroke="#2c333f" stroke-width="3"><path d="M104,125 L104,155"/><path d="M89,140 L119,140"/><path d="M94,130 L114,150"/><path d="M114,130 L94,150"/></g>
-    <circle cx="104" cy="140" r="4" fill="#20262f"/></g>
-  <g><circle cx="322" cy="140" r="30" fill="#15181f"/><circle cx="322" cy="140" r="17" fill="url(#velRim)"/>
-    <g stroke="#2c333f" stroke-width="3"><path d="M322,125 L322,155"/><path d="M307,140 L337,140"/><path d="M312,130 L332,150"/><path d="M332,130 L312,150"/></g>
-    <circle cx="322" cy="140" r="4" fill="#20262f"/></g>
+  <path d="M452,150 C458,142 458,134 456,127 C432,120 396,113 356,108 C334,96 314,84 292,79 C258,72 214,72 176,79 C150,84 128,90 112,97 C86,105 62,112 44,120 C41,128 41,138 43,146 C44,150 47,152 51,152 L440,152 C447,152 451,151 452,150 Z" fill="url(#vB)" stroke="#b98400" stroke-width="1.4"/>
+  <path d="M60,150 L436,150 C443,150 447,149 448,146 L64,146 C58,147 57,149 60,150 Z" fill="#0e1219" opacity=".55"/>
+  <path d="M300,100 C286,86 262,80 236,80 C204,80 168,86 140,98 L152,112 L288,112 C298,110 303,106 300,100 Z" fill="url(#vG)"/>
+  <path d="M212,80 L212,112" stroke="#0c1119" stroke-width="4"/>
+  <path d="M150,90 C195,82 245,80 288,84" fill="none" stroke="#fff7cf" stroke-width="2.4" stroke-linecap="round" opacity=".6"/>
+  <path d="M66,132 C160,122 300,120 448,130" fill="none" stroke="#00000026" stroke-width="2.4"/>
+  <path d="M42,113 C50,110 58,110 66,112 L64,118 L44,120 Z" fill="url(#vB)" stroke="#b98400" stroke-width="1"/>
+  <path d="M440,124 C449,125 455,130 456,138 L438,136 Z" fill="#fff6d5"/>
+  <path d="M432,141 L456,141 L455,148 L436,148 Z" fill="#0f151c"/>
+  <path d="M42,122 C50,121 57,124 58,130 L58,138 L44,137 Z" fill="#e0402f"/>
+  <path d="M92,153 a38,38 0 0 1 76,0 Z" fill="#0c0e13"/>
+  <path d="M320,153 a38,38 0 0 1 76,0 Z" fill="#0c0e13"/>
+  <g><circle cx="130" cy="151" r="37" fill="#11141a"/><circle cx="130" cy="151" r="20" fill="url(#vR)"/>
+    <g stroke="#2a313c" stroke-width="3" stroke-linecap="round"><path d="M130,133 L130,169"/><path d="M112,151 L148,151"/><path d="M117,138 L143,164"/><path d="M143,138 L117,164"/><path d="M120,134 L140,168"/><path d="M140,134 L120,168"/></g>
+    <circle cx="130" cy="151" r="5" fill="#1b212a"/></g>
+  <g><circle cx="358" cy="151" r="37" fill="#11141a"/><circle cx="358" cy="151" r="20" fill="url(#vR)"/>
+    <g stroke="#2a313c" stroke-width="3" stroke-linecap="round"><path d="M358,133 L358,169"/><path d="M340,151 L376,151"/><path d="M345,138 L371,164"/><path d="M371,138 L345,164"/><path d="M348,134 L368,168"/><path d="M368,134 L348,168"/></g>
+    <circle cx="358" cy="151" r="5" fill="#1b212a"/></g>
 </svg>`; }
 
-function audiSVG(){ return `<svg viewBox="0 0 420 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Audi A6, чёрная">
+function audiSVG(){ return `<svg viewBox="0 0 480 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Audi A6, чёрная">
   <defs>
-    <linearGradient id="audBody" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#3a3f47"/><stop offset=".45" stop-color="#1b1d22"/><stop offset="1" stop-color="#0d0e11"/>
-    </linearGradient>
-    <linearGradient id="audGlass" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#4a5765"/><stop offset="1" stop-color="#20272f"/>
-    </linearGradient>
-    <radialGradient id="audRim" cx=".5" cy=".5" r=".5">
-      <stop offset="0" stop-color="#dfe5ec"/><stop offset=".6" stop-color="#98a2b0"/><stop offset="1" stop-color="#454c58"/>
-    </radialGradient>
+    <linearGradient id="aB" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#464c55"/><stop offset=".45" stop-color="#1d2126"/><stop offset="1" stop-color="#0b0c0f"/></linearGradient>
+    <linearGradient id="aG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#465464"/><stop offset="1" stop-color="#1b222a"/></linearGradient>
+    <radialGradient id="aR" cx=".4" cy=".38" r=".64"><stop offset="0" stop-color="#eef2f7"/><stop offset=".55" stop-color="#9aa4b2"/><stop offset="1" stop-color="#39404b"/></radialGradient>
   </defs>
-  <!-- трёхобъёмный седан, длинный капот и багажник -->
-  <path d="M14,130
-    C16,116 30,110 50,108
-    C70,92 96,84 128,82
-    C150,80 176,80 200,82
-    C214,74 236,70 262,71
-    C292,72 314,78 330,90
-    C360,94 392,102 404,112
-    C412,118 414,124 412,130
-    C412,138 406,144 396,145
-    L30,145 C18,145 12,139 14,130 Z" fill="url(#audBody)" stroke="#000" stroke-width="1.2"/>
-  <!-- длинное остекление 4 двери с хром-окантовкой -->
-  <path d="M70,92 C92,84 118,82 138,82 L138,102 L84,102 C74,102 68,98 70,92 Z" fill="url(#audGlass)"/>
-  <path d="M148,82 L196,82 L196,102 L148,102 Z" fill="url(#audGlass)"/>
-  <path d="M206,83 C226,74 246,71 262,72 C286,73 306,80 320,92 L206,102 Z" fill="url(#audGlass)"/>
-  <path d="M70,101 L326,101" stroke="#c8ccd2" stroke-width="1.6" opacity=".6"/>
-  <!-- линия Audi вдоль борта -->
-  <path d="M46,118 C160,110 300,110 402,120" fill="none" stroke="#ffffff18" stroke-width="2"/>
-  <!-- LED-фара рестайл + задний фонарь -->
-  <path d="M400,110 C410,113 414,119 412,126 L398,124 Z" fill="#eaf4ff"/>
-  <path d="M404,116 l6,1" stroke="#8fd0ff" stroke-width="1.5"/>
-  <path d="M16,122 L30,124 L29,131 L16,130 Z" fill="#c22"/>
-  <!-- арки -->
-  <path d="M66,145 a34,34 0 0 1 68,0 Z" fill="#0c0e13"/>
-  <path d="M288,145 a34,34 0 0 1 68,0 Z" fill="#0c0e13"/>
-  <!-- колёса (многоспицевые) -->
-  <g><circle cx="100" cy="138" r="30" fill="#111318"/><circle cx="100" cy="138" r="17" fill="url(#audRim)"/>
-    <g stroke="#3a414d" stroke-width="2.4"><path d="M100,121 L100,155"/><path d="M83,138 L117,138"/><path d="M88,126 L112,150"/><path d="M112,126 L88,150"/><path d="M92,122 L108,154"/><path d="M108,122 L92,154"/></g>
-    <circle cx="100" cy="138" r="4" fill="#20262f"/></g>
-  <g><circle cx="322" cy="138" r="30" fill="#111318"/><circle cx="322" cy="138" r="17" fill="url(#audRim)"/>
-    <g stroke="#3a414d" stroke-width="2.4"><path d="M322,121 L322,155"/><path d="M305,138 L339,138"/><path d="M310,126 L334,150"/><path d="M334,126 L310,150"/><path d="M314,122 L330,154"/><path d="M330,122 L314,154"/></g>
-    <circle cx="322" cy="138" r="4" fill="#20262f"/></g>
+  <path d="M462,152 C470,144 470,132 464,122 C440,114 404,108 360,104 L344,102 C324,88 302,78 276,76 C244,73 210,74 184,80 C170,83 160,87 150,91 C132,98 112,102 96,104 L58,106 C50,107 45,112 43,122 C41,133 41,143 45,150 C47,153 51,152 55,152 L456,152 C459,152 461,152 462,152 Z" fill="url(#aB)" stroke="#000" stroke-width="1.1"/>
+  <path d="M60,150 L452,150 C455,150 457,149 458,147 L64,147 C58,148 57,150 60,150 Z" fill="#05070a" opacity=".5"/>
+  <path d="M150,91 C160,85 174,80 190,79 L272,81 C300,83 322,90 338,101 L157,101 C151,100 148,95 150,91 Z" fill="url(#aG)"/>
+  <path d="M157,100 L338,100" stroke="#cdd2d9" stroke-width="1.8" opacity=".7"/>
+  <path d="M206,80 L206,101 M264,82 L264,101" stroke="#0c0f14" stroke-width="3.6"/>
+  <path d="M52,124 C180,116 340,116 466,126" fill="none" stroke="#ffffff1c" stroke-width="1.6"/>
+  <path d="M58,133 C190,127 340,127 460,135" fill="none" stroke="#00000045" stroke-width="2"/>
+  <path d="M466,120 L472,122 L474,146 L466,146 Z" fill="#1d232b"/>
+  <path d="M452,120 C462,121 468,126 470,134 L452,131 Z" fill="#eaf3ff"/>
+  <path d="M456,124 l8,1" stroke="#a9d6ff" stroke-width="1.4"/>
+  <path d="M38,124 C48,123 56,126 58,132 L58,140 L40,139 Z" fill="#cc2a1e"/>
+  <path d="M84,150 a38,38 0 0 1 76,0 Z" fill="#0c0e13"/>
+  <path d="M330,150 a38,38 0 0 1 76,0 Z" fill="#0c0e13"/>
+  <g><circle cx="122" cy="148" r="37" fill="#0e1116"/><circle cx="122" cy="148" r="20" fill="url(#aR)"/>
+    <g stroke="#38404a" stroke-width="2.4" stroke-linecap="round"><path d="M122,129 L122,167"/><path d="M103,148 L141,148"/><path d="M108,135 L136,161"/><path d="M136,135 L108,161"/><path d="M112,131 L132,165"/><path d="M132,131 L112,165"/><path d="M105,140 L139,156"/><path d="M139,140 L105,156"/></g>
+    <circle cx="122" cy="148" r="5" fill="#1b212a"/></g>
+  <g><circle cx="368" cy="148" r="37" fill="#0e1116"/><circle cx="368" cy="148" r="20" fill="url(#aR)"/>
+    <g stroke="#38404a" stroke-width="2.4" stroke-linecap="round"><path d="M368,129 L368,167"/><path d="M349,148 L387,148"/><path d="M354,135 L382,161"/><path d="M382,135 L354,161"/><path d="M358,131 L378,165"/><path d="M378,131 L358,165"/><path d="M351,140 L385,156"/><path d="M385,140 L351,156"/></g>
+    <circle cx="368" cy="148" r="5" fill="#1b212a"/></g>
 </svg>`; }
 
-// ── данные гаража ────────────────────────────────────────────
+// ── данные гаража ──
 const CARS=[
   { name:"Hyundai Veloster", sub:"1.6 T-GDI · 2014 · G4FJ", vin:"KMHTE61EBEU187351",
     color:"#f7c400", href:"veloster.html", svg:velosterSVG,
@@ -232,9 +170,9 @@ function copy(text){ if(navigator.clipboard&&window.isSecureContext){ navigator.
 
 function render(){
   const g=$('#grid');
-  g.innerHTML = CARS.map((c,i)=>`
+  g.innerHTML = CARS.map(c=>`
     <a class="car-card" href="${c.href}">
-      <div class="stage">${c.svg()}<div class="floor"></div></div>
+      <div class="stage">${c.svg()}</div>
       <div class="car-body">
         <div class="car-name"><span class="badge-color" style="background:${c.color}"></span>${c.name}</div>
         <div class="car-sub">${c.sub}</div>
@@ -248,13 +186,9 @@ function render(){
       <b>Добавить машину</b>
       <p>Даёшь VIN — подбирается силуэт модели и рисуется в её цвете. Дальше подтягиваются схемы EPC по VIN.</p>
     </div>`;
-  g.addEventListener('click', e=>{
-    const vin=e.target.closest('.vin');
-    if(vin){ e.preventDefault(); copy(vin.dataset.vin); }
-  });
+  g.addEventListener('click', e=>{ const vin=e.target.closest('.vin'); if(vin){ e.preventDefault(); copy(vin.dataset.vin); } });
 }
 
-// тема
 const TK='cars_theme', ICON={auto:'◐',light:'☀',dark:'☾'};
 function applyTheme(t){ const m=document.querySelector('meta[name=theme-color]');
   if(t==='light'||t==='dark') document.documentElement.dataset.theme=t; else delete document.documentElement.dataset.theme;
