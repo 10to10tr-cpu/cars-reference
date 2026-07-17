@@ -2,75 +2,270 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<title>Справочники по авто</title>
+<meta name="theme-color" content="#0c0e13">
+<title>Гараж</title>
 <style>
-  :root {
-    --bg: oklch(97% 0.01 250);
-    --card: oklch(100% 0 0);
-    --text: oklch(22% 0.02 260);
-    --muted: oklch(55% 0.02 260);
-    --accent: oklch(58% 0.19 255);
-    --line: oklch(90% 0.01 260);
-    --shadow: 0 1px 2px oklch(20% 0.02 260 / 0.06), 0 8px 24px oklch(20% 0.02 260 / 0.08);
+  :root{
+    --bg:#0c0e13; --bg-glow:#161a24; --card:#161a22; --card2:#1e2431;
+    --line:#2a3140; --text:#eef1f6; --muted:#93a0b4; --accent:#5aa8ff; --on-accent:#04121f;
+    --floor:#1a1f2b; --shadow:0 30px 60px -20px rgba(0,0,0,.7);
+    --r:20px;
   }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: oklch(18% 0.02 260);
-      --card: oklch(24% 0.02 260);
-      --text: oklch(94% 0.01 260);
-      --muted: oklch(68% 0.02 260);
-      --accent: oklch(72% 0.16 255);
-      --line: oklch(32% 0.02 260);
-      --shadow: 0 1px 2px oklch(0% 0 0 / 0.3), 0 10px 30px oklch(0% 0 0 / 0.35);
+  @media (prefers-color-scheme: light){
+    :root:not([data-theme]){
+      --bg:#eceff5; --bg-glow:#ffffff; --card:#ffffff; --card2:#f1f4f9;
+      --line:#dde3ec; --text:#141922; --muted:#5c6779; --accent:#1f6fe0; --on-accent:#ffffff;
+      --floor:#e2e7f0; --shadow:0 24px 50px -22px rgba(30,50,90,.35);
     }
   }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background: var(--bg); color: var(--text);
-    min-height: 100dvh; display: flex; flex-direction: column;
-    align-items: center; justify-content: center; padding: clamp(1.5rem, 4vw, 4rem);
+  :root[data-theme="light"]{
+    --bg:#eceff5; --bg-glow:#ffffff; --card:#ffffff; --card2:#f1f4f9;
+    --line:#dde3ec; --text:#141922; --muted:#5c6779; --accent:#1f6fe0; --on-accent:#ffffff;
+    --floor:#e2e7f0; --shadow:0 24px 50px -22px rgba(30,50,90,.35);
   }
-  header { text-align: center; margin-bottom: clamp(1.5rem, 4vw, 2.5rem); }
-  h1 { font-size: clamp(1.6rem, 1rem + 3vw, 2.4rem); margin: 0 0 .4rem; letter-spacing: -0.02em; }
-  header p { color: var(--muted); margin: 0; font-size: clamp(.9rem, .85rem + .3vw, 1.05rem); }
-  .grid { display: grid; gap: 1rem; width: 100%; max-width: 640px; }
-  @media (min-width: 560px) { .grid { grid-template-columns: 1fr 1fr; } }
-  a.card {
-    display: flex; flex-direction: column; gap: .5rem;
-    background: var(--card); border: 1px solid var(--line); border-radius: 18px;
-    padding: clamp(1.25rem, 3vw, 1.75rem); text-decoration: none; color: inherit;
-    box-shadow: var(--shadow); transition: transform .18s cubic-bezier(.16,1,.3,1), border-color .18s;
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0; color:var(--text);
+    font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    background:
+      radial-gradient(1200px 600px at 50% -10%, var(--bg-glow), transparent 70%),
+      var(--bg);
+    min-height:100dvh;
   }
-  a.card:hover, a.card:focus-visible { transform: translateY(-3px); border-color: var(--accent); outline: none; }
-  .emoji { font-size: 2.4rem; line-height: 1; }
-  .name { font-size: 1.25rem; font-weight: 650; letter-spacing: -0.01em; }
-  .desc { color: var(--muted); font-size: .9rem; line-height: 1.4; }
-  .go { margin-top: auto; color: var(--accent); font-weight: 600; font-size: .9rem; }
-  footer { color: var(--muted); font-size: .78rem; margin-top: clamp(1.5rem, 4vw, 2.5rem); text-align: center; }
+  header{
+    display:flex; align-items:center; gap:14px;
+    padding:22px clamp(16px,4vw,40px) 8px; max-width:1100px; margin:0 auto;
+  }
+  .logo{ font-size:1.5rem; }
+  h1{ font-size:clamp(1.4rem,1rem+2vw,2rem); margin:0; letter-spacing:-.02em; font-weight:750; }
+  header .sub{ color:var(--muted); font-size:.85rem; margin-left:2px; }
+  .theme-btn{
+    margin-left:auto; background:var(--card); color:var(--text); border:1px solid var(--line);
+    width:44px; height:44px; border-radius:13px; font-size:18px; cursor:pointer; display:grid; place-items:center;
+  }
+  .theme-btn:hover{ border-color:var(--accent); }
+  main{ max-width:1100px; margin:0 auto; padding:12px clamp(16px,4vw,40px) 60px; }
+  .lead{ color:var(--muted); font-size:.95rem; margin:0 2px 22px; }
+
+  .grid{ display:grid; gap:22px; grid-template-columns:1fr; }
+  @media (min-width:720px){ .grid{ grid-template-columns:1fr 1fr; } }
+
+  .car-card{
+    position:relative; background:linear-gradient(180deg,var(--card),var(--card2));
+    border:1px solid var(--line); border-radius:var(--r); overflow:hidden;
+    box-shadow:var(--shadow); text-decoration:none; color:inherit;
+    display:flex; flex-direction:column; transition:transform .25s cubic-bezier(.16,1,.3,1),border-color .25s;
+  }
+  .car-card:hover{ transform:translateY(-5px); border-color:color-mix(in oklab,var(--accent) 50%,var(--line)); }
+  .stage{
+    position:relative; padding:26px 22px 0; aspect-ratio:16/8;
+    display:grid; place-items:center;
+    background:radial-gradient(120% 90% at 50% 30%, color-mix(in oklab,var(--accent) 7%, transparent), transparent 70%);
+  }
+  .stage svg{ width:100%; height:auto; max-height:190px; filter:drop-shadow(0 22px 16px rgba(0,0,0,.45)); }
+  .floor{
+    position:absolute; left:8%; right:8%; bottom:14px; height:26px; border-radius:50%;
+    background:radial-gradient(closest-side, color-mix(in oklab,var(--floor) 90%, #000) , transparent);
+    opacity:.7;
+  }
+  .car-body{ padding:18px 22px 22px; }
+  .car-name{ font-size:1.3rem; font-weight:700; letter-spacing:-.01em; display:flex; align-items:center; gap:10px; }
+  .car-sub{ color:var(--muted); font-size:.85rem; margin-top:2px; }
+  .vin{
+    display:inline-flex; align-items:center; gap:8px; margin-top:12px; font-family:ui-monospace,Menlo,monospace;
+    font-size:.8rem; color:var(--accent); background:color-mix(in oklab,var(--accent) 10%, transparent);
+    border:1px solid color-mix(in oklab,var(--accent) 25%, transparent); padding:7px 11px; border-radius:10px;
+    cursor:pointer; user-select:none;
+  }
+  .stats{ display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
+  .stat{ background:var(--card2); border:1px solid var(--line); border-radius:12px; padding:8px 12px; min-width:74px; }
+  .stat b{ display:block; font-size:1.15rem; font-variant-numeric:tabular-nums; }
+  .stat span{ color:var(--muted); font-size:.72rem; text-transform:uppercase; letter-spacing:.04em; }
+  .open{
+    margin-top:18px; display:inline-flex; align-items:center; gap:8px;
+    background:var(--accent); color:var(--on-accent); font-weight:650; font-size:.95rem;
+    padding:13px 18px; border-radius:13px; align-self:flex-start;
+  }
+  .badge-color{ width:13px; height:13px; border-radius:50%; border:2px solid rgba(255,255,255,.5); flex:none; }
+
+  .add-card{
+    border:1.5px dashed var(--line); border-radius:var(--r); background:transparent;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;
+    padding:34px 26px; color:var(--muted); min-height:230px;
+  }
+  .add-card .plus{ width:54px; height:54px; border-radius:50%; border:1.5px dashed var(--line); display:grid; place-items:center; font-size:26px; margin-bottom:14px; }
+  .add-card b{ color:var(--text); font-weight:650; }
+  .add-card p{ font-size:.82rem; margin:8px 0 0; max-width:34ch; }
+
+  footer{ max-width:1100px; margin:0 auto; padding:8px clamp(16px,4vw,40px) 40px; color:var(--muted); font-size:.78rem; }
 </style>
 </head>
 <body>
-  <header>
-    <h1>Справочники по авто</h1>
-    <p>Каталог запчастей, схемы EPC и OEM-номера по VIN. Всё офлайн.</p>
-  </header>
-  <main class="grid">
-    <a class="card" href="veloster.html">
-      <span class="emoji">🚗</span>
-      <span class="name">Hyundai Veloster</span>
-      <span class="desc">Turbo 1.6, двигатель G4FJ. Каталог, диагностика, регламент ТО, 177 узлов EPC.</span>
-      <span class="go">Открыть →</span>
-    </a>
-    <a class="card" href="audi.html">
-      <span class="emoji">🚙</span>
-      <span class="name">Audi A6 / Avant</span>
-      <span class="desc">Схемы EPC и OEM-номера по VIN: механика, кузов, 1898 номеров.</span>
-      <span class="go">Открыть →</span>
-    </a>
-  </main>
-  <footer>Личный справочник · открывается на телефоне и ноутбуке</footer>
+<header>
+  <span class="logo">🅿️</span>
+  <div>
+    <h1>Гараж</h1>
+    <div class="sub">оффлайн-справочники по VIN · каталог, схемы, ТО</div>
+  </div>
+  <button class="theme-btn" id="theme-btn" title="Тема" aria-label="Тема">◐</button>
+</header>
+<main>
+  <p class="lead">Выбери машину — внутри каталог запчастей, взрыв-схемы EPC по VIN, диагностика и список для продавца. Всё работает офлайн.</p>
+  <div class="grid" id="grid"></div>
+</main>
+<footer>Личный гараж · открывается на телефоне и ноутбуке · данные и отметки хранятся в браузере</footer>
+
+<div id="toast" style="position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);background:#111;color:#fff;padding:11px 18px;border-radius:12px;font-size:14px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:60;box-shadow:0 8px 30px rgba(0,0,0,.4);"></div>
+
+<script>
+// ── SVG-иллюстрации машин (боковой профиль) ──────────────────
+function velosterSVG(){ return `<svg viewBox="0 0 420 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Hyundai Veloster, жёлтый">
+  <defs>
+    <linearGradient id="velBody" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffe14d"/><stop offset=".5" stop-color="#f7c400"/><stop offset="1" stop-color="#d99e00"/>
+    </linearGradient>
+    <linearGradient id="velGlass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3a4a5c"/><stop offset="1" stop-color="#1a2430"/>
+    </linearGradient>
+    <radialGradient id="velRim" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#c9d2dd"/><stop offset=".6" stop-color="#8a95a3"/><stop offset="1" stop-color="#3a4250"/>
+    </radialGradient>
+  </defs>
+  <!-- кузов: приземистое купе с фастбэк-крышей -->
+  <path d="M18,132
+    C22,110 40,104 64,102
+    C80,86 104,74 140,71
+    C176,68 210,70 238,74
+    C300,82 340,96 372,110
+    C392,118 402,124 404,132
+    C405,140 400,146 388,147
+    L36,147 C22,147 16,142 18,132 Z" fill="url(#velBody)" stroke="#b98600" stroke-width="1.5"/>
+  <!-- нижний борт тень -->
+  <path d="M20,133 L402,133 C402,140 398,146 388,147 L36,147 C24,147 18,141 20,133 Z" fill="#00000022"/>
+  <!-- остекление купе -->
+  <path d="M96,84 C112,74 134,71 154,71 C168,71 176,72 182,74 L176,97 L104,97 C96,97 92,90 96,84 Z" fill="url(#velGlass)"/>
+  <path d="M190,74 C214,76 226,80 236,86 L232,97 L190,97 Z" fill="url(#velGlass)"/>
+  <!-- блик на крыше -->
+  <path d="M104,80 C120,74 140,72 158,73" fill="none" stroke="#fff6c9" stroke-width="2.5" stroke-linecap="round" opacity=".7"/>
+  <!-- подштамповка на двери -->
+  <path d="M70,120 C150,110 260,110 360,122" fill="none" stroke="#00000022" stroke-width="2"/>
+  <!-- фара / фонарь -->
+  <path d="M392,116 C400,118 404,123 404,130 L392,129 Z" fill="#fff4d0"/>
+  <path d="M20,124 L34,126 L33,133 L20,132 Z" fill="#e04b3a"/>
+  <!-- арки -->
+  <path d="M70,147 a34,34 0 0 1 68,0 Z" fill="#0c0e13"/>
+  <path d="M288,147 a34,34 0 0 1 68,0 Z" fill="#0c0e13"/>
+  <!-- колёса -->
+  <g><circle cx="104" cy="140" r="30" fill="#15181f"/><circle cx="104" cy="140" r="17" fill="url(#velRim)"/>
+    <g stroke="#2c333f" stroke-width="3"><path d="M104,125 L104,155"/><path d="M89,140 L119,140"/><path d="M94,130 L114,150"/><path d="M114,130 L94,150"/></g>
+    <circle cx="104" cy="140" r="4" fill="#20262f"/></g>
+  <g><circle cx="322" cy="140" r="30" fill="#15181f"/><circle cx="322" cy="140" r="17" fill="url(#velRim)"/>
+    <g stroke="#2c333f" stroke-width="3"><path d="M322,125 L322,155"/><path d="M307,140 L337,140"/><path d="M312,130 L332,150"/><path d="M332,130 L312,150"/></g>
+    <circle cx="322" cy="140" r="4" fill="#20262f"/></g>
+</svg>`; }
+
+function audiSVG(){ return `<svg viewBox="0 0 420 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Audi A6, чёрная">
+  <defs>
+    <linearGradient id="audBody" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3a3f47"/><stop offset=".45" stop-color="#1b1d22"/><stop offset="1" stop-color="#0d0e11"/>
+    </linearGradient>
+    <linearGradient id="audGlass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4a5765"/><stop offset="1" stop-color="#20272f"/>
+    </linearGradient>
+    <radialGradient id="audRim" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#dfe5ec"/><stop offset=".6" stop-color="#98a2b0"/><stop offset="1" stop-color="#454c58"/>
+    </radialGradient>
+  </defs>
+  <!-- трёхобъёмный седан, длинный капот и багажник -->
+  <path d="M14,130
+    C16,116 30,110 50,108
+    C70,92 96,84 128,82
+    C150,80 176,80 200,82
+    C214,74 236,70 262,71
+    C292,72 314,78 330,90
+    C360,94 392,102 404,112
+    C412,118 414,124 412,130
+    C412,138 406,144 396,145
+    L30,145 C18,145 12,139 14,130 Z" fill="url(#audBody)" stroke="#000" stroke-width="1.2"/>
+  <!-- длинное остекление 4 двери с хром-окантовкой -->
+  <path d="M70,92 C92,84 118,82 138,82 L138,102 L84,102 C74,102 68,98 70,92 Z" fill="url(#audGlass)"/>
+  <path d="M148,82 L196,82 L196,102 L148,102 Z" fill="url(#audGlass)"/>
+  <path d="M206,83 C226,74 246,71 262,72 C286,73 306,80 320,92 L206,102 Z" fill="url(#audGlass)"/>
+  <path d="M70,101 L326,101" stroke="#c8ccd2" stroke-width="1.6" opacity=".6"/>
+  <!-- линия Audi вдоль борта -->
+  <path d="M46,118 C160,110 300,110 402,120" fill="none" stroke="#ffffff18" stroke-width="2"/>
+  <!-- LED-фара рестайл + задний фонарь -->
+  <path d="M400,110 C410,113 414,119 412,126 L398,124 Z" fill="#eaf4ff"/>
+  <path d="M404,116 l6,1" stroke="#8fd0ff" stroke-width="1.5"/>
+  <path d="M16,122 L30,124 L29,131 L16,130 Z" fill="#c22"/>
+  <!-- арки -->
+  <path d="M66,145 a34,34 0 0 1 68,0 Z" fill="#0c0e13"/>
+  <path d="M288,145 a34,34 0 0 1 68,0 Z" fill="#0c0e13"/>
+  <!-- колёса (многоспицевые) -->
+  <g><circle cx="100" cy="138" r="30" fill="#111318"/><circle cx="100" cy="138" r="17" fill="url(#audRim)"/>
+    <g stroke="#3a414d" stroke-width="2.4"><path d="M100,121 L100,155"/><path d="M83,138 L117,138"/><path d="M88,126 L112,150"/><path d="M112,126 L88,150"/><path d="M92,122 L108,154"/><path d="M108,122 L92,154"/></g>
+    <circle cx="100" cy="138" r="4" fill="#20262f"/></g>
+  <g><circle cx="322" cy="138" r="30" fill="#111318"/><circle cx="322" cy="138" r="17" fill="url(#audRim)"/>
+    <g stroke="#3a414d" stroke-width="2.4"><path d="M322,121 L322,155"/><path d="M305,138 L339,138"/><path d="M310,126 L334,150"/><path d="M334,126 L310,150"/><path d="M314,122 L330,154"/><path d="M330,122 L314,154"/></g>
+    <circle cx="322" cy="138" r="4" fill="#20262f"/></g>
+</svg>`; }
+
+// ── данные гаража ────────────────────────────────────────────
+const CARS=[
+  { name:"Hyundai Veloster", sub:"1.6 T-GDI · 2014 · G4FJ", vin:"KMHTE61EBEU187351",
+    color:"#f7c400", href:"veloster.html", svg:velosterSVG,
+    stats:[["180","деталей"],["177","узлов EPC"],["2590","OEM"]] },
+  { name:"Audi A6 / Avant", sub:"C6 рестайл · оригинал по VIN", vin:"WAUZZZ4F3AN034547",
+    color:"#15171b", href:"audi.html", svg:audiSVG,
+    stats:[["110","узлов EPC"],["1898","OEM"]] },
+];
+
+const $=s=>document.querySelector(s);
+function toast(m){ const t=$('#toast'); t.textContent=m; t.style.opacity='1'; t.style.transform='translateX(-50%) translateY(0)';
+  clearTimeout(t._t); t._t=setTimeout(()=>{ t.style.opacity='0'; t.style.transform='translateX(-50%) translateY(20px)'; },1600); }
+function copy(text){ if(navigator.clipboard&&window.isSecureContext){ navigator.clipboard.writeText(text).then(()=>toast('VIN скопирован')); return; }
+  const ta=document.createElement('textarea'); ta.value=text; ta.style.position='fixed'; ta.style.top='-999px'; document.body.appendChild(ta); ta.select();
+  try{ document.execCommand('copy'); toast('VIN скопирован'); }catch(e){ toast('Не удалось'); } document.body.removeChild(ta); }
+
+function render(){
+  const g=$('#grid');
+  g.innerHTML = CARS.map((c,i)=>`
+    <a class="car-card" href="${c.href}">
+      <div class="stage">${c.svg()}<div class="floor"></div></div>
+      <div class="car-body">
+        <div class="car-name"><span class="badge-color" style="background:${c.color}"></span>${c.name}</div>
+        <div class="car-sub">${c.sub}</div>
+        <span class="vin" data-vin="${c.vin}" title="Скопировать VIN">${c.vin} ⧉</span>
+        <div class="stats">${c.stats.map(s=>`<div class="stat"><b>${s[0]}</b><span>${s[1]}</span></div>`).join('')}</div>
+        <span class="open">Открыть справочник →</span>
+      </div>
+    </a>`).join('') + `
+    <div class="add-card">
+      <div class="plus">＋</div>
+      <b>Добавить машину</b>
+      <p>Даёшь VIN — подбирается силуэт модели и рисуется в её цвете. Дальше подтягиваются схемы EPC по VIN.</p>
+    </div>`;
+  g.addEventListener('click', e=>{
+    const vin=e.target.closest('.vin');
+    if(vin){ e.preventDefault(); copy(vin.dataset.vin); }
+  });
+}
+
+// тема
+const TK='cars_theme', ICON={auto:'◐',light:'☀',dark:'☾'};
+function applyTheme(t){ const m=document.querySelector('meta[name=theme-color]');
+  if(t==='light'||t==='dark') document.documentElement.dataset.theme=t; else delete document.documentElement.dataset.theme;
+  const light = t==='light' || (t==='auto' && matchMedia('(prefers-color-scheme: light)').matches);
+  if(m) m.setAttribute('content', light?'#eceff5':'#0c0e13'); }
+function cur(){ return localStorage.getItem(TK)||'auto'; }
+function initTheme(){ applyTheme(cur()); $('#theme-btn').textContent=ICON[cur()];
+  $('#theme-btn').addEventListener('click',()=>{ const o=['auto','light','dark']; const n=o[(o.indexOf(cur())+1)%3];
+    localStorage.setItem(TK,n); applyTheme(n); $('#theme-btn').textContent=ICON[n]; }); }
+
+render(); initTheme();
+</script>
 </body>
 </html>
